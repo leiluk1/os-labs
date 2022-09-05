@@ -1,0 +1,7 @@
+    1  ls
+    2  touch ex2.txt
+    3  touch example.txt
+    4  ls
+    5  rm example.txt
+    6  ls
+    7  history > ex2.txt
