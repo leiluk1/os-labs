@@ -3,6 +3,13 @@
 
 void* aggregate(void* base, size_t size, int n, void* initial_value, void* (*opr)(const void*, const void*));
 
+struct Mean {
+    double mean;
+    int count;
+};
+
+typedef struct Mean Mean;
+
 void* addInt(const void* a, const void* b){
     int* res = malloc(sizeof(int));
     *res = *((int*)a) + *((int*)b);
@@ -32,96 +39,85 @@ void* mulDouble(const void* a, const void* b){
 }
 
 void* meanInt(const void* a, const void* b){
-
-    //<WRITE YOUR CODE HERE>;
-    
+    Mean* m = (Mean*) a;
+    int* elem = (int*) b;
+    Mean* res = malloc(sizeof(Mean));
+    res->count = m->count + 1;
+    res->mean = (m->mean * m->count + *elem) / res->count;
+    return res;
 }
 
 void* meanDouble(const void* a, const void* b){
-
-    //<WRITE YOUR CODE HERE>;
-    
+    Mean* m = (Mean*) a;
+    double* elem = (double*) b;
+    Mean* res = malloc(sizeof(Mean));
+    res->count = m->count + 1;
+    res->mean = (m->mean * m->count + *elem) / res->count;
+    return res;
 }
 
 void* aggregate(void* base, size_t size, int n, void* initial_value, void* (*opr)(const void*, const void*)){
-
-	void* output;
-
-	if (size==sizeof(int)){ // base is a pointer to an integer
-	
-	    //<WRITE YOUR CODE HERE>;
-
-
-	}else{ // base is a pointer to a double
-	
-	    //<WRITE YOUR CODE HERE>;
-	    
-	}
-
-	return output;
+    void* output = initial_value;
+    void* prev;
+    for (int i = 0; i < n; i++) {
+        prev = output;
+        output = opr(output, (base + i * size));
+        if (i != 0) {
+            free(prev);
+        }
+    }
+    return output;
 }
 
-
-
-
 int main(){
+    int* ints = malloc(sizeof(int)*5);
+    double* doubles = malloc(sizeof(double)*5);
+ 
+    int init1a = 0; 
+    int init1m = 1;
+    double init2a = 0;
+    double init2m = 1;
+    Mean init1mean = {0, 0}, init2mean = {0, 0};
 
-        int* ints = malloc(sizeof(int)*5);
-        double* doubles = malloc(sizeof(double)*5);
-        
-        //<WRITE YOUR CODE HERE>;
+    for (int i = 0; i < 5; i++) {
+        scanf("%d", &ints[i]);
+    }
 
+    for (int i = 0; i < 5; i++) {
+        scanf("%lf", &doubles[i]);
+    }
 
 	// Addition
 	
-        int* result1a;
-        
-        //<WRITE YOUR CODE HERE>;
-        
-        printf("%d\n", *result1a);
+    int* result1a = aggregate(ints, sizeof(int), 5, &init1a, addInt);
+    printf("%d\n", *result1a);
 
-	double* result2a;
-	
-	//<WRITE YOUR CODE HERE>;
-	
-        printf("%f\n", *result2a);
+	double* result2a = aggregate(doubles, sizeof(double), 5, &init2a, addDouble);
+    printf("%f\n", *result2a);
                 
-
 	// Multiplication
 	
-        int* result1m;
-        
-        //<WRITE YOUR CODE HERE>;
-        
-        printf("%d\n", *result1m);
+    int* result1m = aggregate(ints, sizeof(int), 5, &init1m, mulInt);
+    printf("%d\n", *result1m);
 
-	double* result2m;
-	
-        //<WRITE YOUR CODE HERE>;
-	
-        printf("%f\n", *result2m);
-        
-        
-        
+	double* result2m = aggregate(doubles, sizeof(double), 5, &init2m, mulDouble);
+    printf("%f\n", *result2m);
+              
 	// Mean
-	
-        int* result1mean;
-        
-        //<WRITE YOUR CODE HERE>;
+    double* result1mean = aggregate(ints, sizeof(int), 5, &init1mean, meanInt);
+    printf("%f\n", *result1mean);
+
+	double* result2mean = aggregate(doubles, sizeof(double), 5, &init2mean, meanDouble);
+    printf("%f\n", *result2mean);
     
-        printf("%d\n", *result1mean);
-
-	double* result2mean;
-	
-	//<WRITE YOUR CODE HERE>;
-	
-        printf("%f\n", *result2mean);
-	
-        
-        // free the pointers
-        //<WRITE YOUR CODE HERE>;
-
-
-        return EXIT_SUCCESS;
+    // // free the pointers
+    free(result1a);
+    free(result2a);
+    free(result1m);
+    free(result2m);
+    free(result1mean);
+    free(result2mean);
+    
+    return EXIT_SUCCESS;
 }
 
