@@ -1,0 +1,42 @@
+// The results of the first run for 3 fork calls
+
+sh─┬─ex3─┬─ex3─┬─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3───ex3
+   │     └─ex3
+   └─pstree
+
+In output we have process hierarchy as a tree structure. The process duplicates itself after the fork call, creating 2 branches.
+We run 3 fork calls, therefore we obtain 8 (2^3) created processes. 
+
+
+// The results of the second run for 5 fork calls
+
+sh─┬─ex3─┬─ex3─┬─ex3─┬─ex3─┬─ex3───ex3
+   │     │     │     │     └─ex3
+   │     │     │     ├─ex3───ex3
+   │     │     │     └─ex3
+   │     │     ├─ex3─┬─ex3───ex3
+   │     │     │     └─ex3
+   │     │     ├─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3─┬─ex3─┬─ex3───ex3
+   │     │     │     └─ex3
+   │     │     ├─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3─┬─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3───ex3
+   │     └─ex3
+   └─pstree
+
+The same as in the previous case, the proccess copies itself and creates 2 branches after fork is called. 
+As we run 5 fork calls, the number of created processes is 32 (2^5).
+
+
+// The difference
+
+The only difference between the first and second results is the number of the created procceses.
+
+
+
