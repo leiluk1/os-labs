@@ -1,0 +1,5 @@
+Based on the results, we observe a correlation between the number of threads
+and performance growth. Real time decreases significantly as the number of
+threads increases. For instance, if we compare the first and the second experiments,
+we've halved the time when doubled the number of threads. However, the user CPU time
+well almost stays unchanged. 

@@ -1,0 +1,25 @@
+result of 1 thread
+
+real	0m11.770s
+user	0m11.751s
+sys	0m0.010s
+result of 2 threads
+
+real	0m7.385s
+user	0m12.208s
+sys	0m0.000s
+result of 4 threads
+
+real	0m4.389s
+user	0m13.621s
+sys	0m0.000s
+result of 10 threads
+
+real	0m2.845s
+user	0m19.286s
+sys	0m0.000s
+result of 100 threads
+
+real	0m2.772s
+user	0m21.566s
+sys	0m0.029s

@@ -1,0 +1,6 @@
+We got almost similar results as in exercise 3. So, the correlation of the
+number of threads to real time, as well as to the user CPU time, remains
+the same. 
+However, as the number of threads grows, system time (CPU time spent on
+system calls inside the kernel) increases. It happens because we use mutexes, which are kernel
+objects that require system calls.
