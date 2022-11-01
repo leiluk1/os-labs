@@ -1,0 +1,4 @@
+The physical address represents the location in physical memory, while the
+virtual address either represents the physical addresses or not presented in the
+memory at all. The virtual addresses are mapped into physical addresses and used
+in order to access the physical addresses.

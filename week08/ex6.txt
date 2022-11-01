@@ -1,0 +1,6 @@
+Page size = 8 KB = 2^13 bytes.
+Offset = 13 bits.
+Page entry number = (16 - 13) = 3 bits.
+Entries = 2^3 = 8. 
+
+Answer: 8 entries.
