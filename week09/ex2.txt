@@ -1,0 +1,21 @@
+Let us condider the number of pages: 3
+
+1) The sequence of page references resulted in decreased Hit/Miss Ratio: 1 2 3 4 5 0
+Hits: 0
+Misses: 6
+Ratio: 0.0000
+
+2) The sequence of references resulted in increased Hit/Miss Ratio: 1 1 1 1 1 1 1 1 1 1 
+Hits: 9 
+Misses: 1 
+Ratio: 9.0000
+
+The results show that: 
+1) If we consider a sequence of references such that all
+of the referenced pages are unique, page faults occur on each reference. In such
+case, the number of hits is 0 and the ratio is the lowest (that is 0). 
+
+2) To maximize Hit/Miss ratio, we should consider the minimum possible value for
+misses that is 1, therefore page fault occurs once when first page comes.
+Therefore, when we consider the sequence of references that does not change, we
+get the highest ratio.
