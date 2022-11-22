@@ -1,0 +1,4 @@
+Files in /
+file1 file2 lib64 lib ex2.out .. lost+found usr . 
+Files in ./lofsdisk
+home srv etc opt root lib mnt usr media lib64 sys dev sbin boot bin run lib32 libx32 init proc snap tmp var lost+found .. . 
